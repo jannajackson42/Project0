@@ -10,7 +10,7 @@ describe('DAO Specs', ()=>{
     let savedAccount:Client = null;
 
     it('should list all clients', async ()=>{
-        const client: Client = {fname:"Kourtney", lname:"Kardashian", id:"1", accounts:[{acctname:'Vegas', balance:5000}]}
+        const client: Client = {fname:"Kourtney", lname:"Kardashian", id:"", accounts:[{acctname:'Vegas', balance:5000}]}
         savedClient = await clientDao.createClient(client);
     })
 
@@ -20,12 +20,12 @@ describe('DAO Specs', ()=>{
         expect(retreivedClient.lname).toBe("Kardashian");
     })
 
-    it("Should update a client", async () => {
-        const updatedClient: Client = {fname:"North", lname:"West", id:"2", accounts:[{acctname:"tiktok",balance:1000}]}
-        await clientDao.updateClient(updatedClient);
-        const retreivedClient: Client = await clientDao.getClientbyID(updatedClient.id);
-        expect(retreivedClient.fname).toBe("North");    
-    })
+    // it("Should update a client", async () => {
+    //     const updatedClient: Client = {fname:"North", lname:"West", id:"", accounts:[{acctname:"tiktok",balance:1000}]}
+    //     await clientDao.updateClient(updatedClient);
+    //     const retreivedClient: Client = await clientdaoazure.getClientbyID(updatedClient.id);
+    //     expect(retreivedClient.fname).toBe("North");    
+    // })
 
     it("Should get all clients", async () => {
         const retrievedClients: Client[] = await clientDao.getAllClients();
@@ -33,7 +33,7 @@ describe('DAO Specs', ()=>{
     })
 
     it("Should add a client", async () => {
-        const client: Client = {fname:"Kanye", lname:"West", id:"3", accounts:[{acctname:"Paris", balance:400}]}
+        const client: Client = {fname:"Kanye", lname:"West", id:"", accounts:[{acctname:"Paris", balance:400}]}
         savedClient = await clientDao.createClient(client);
         expect (savedClient.id).not.toBeFalsy();
     })

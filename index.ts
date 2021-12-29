@@ -7,6 +7,7 @@ import {clientdaoazure} from "./daos/client-dao";
 import { StatusCodes } from "@azure/cosmos";
 
 
+
 const app = Express();
 app.use(Express.json());
 
@@ -92,6 +93,11 @@ app.delete ('/clients/:id', async (req,res)=>{
 
 // //PATCH /clients/7/accounts/checking/deposit => deposit given amount (Body {"amount":500} ), return 404 if no account exists
 app.patch('/clients/:id/accounts/:acctname/deposit', async (req, res)=>{
+    if(req.body.amount<0){
+        res.status(500);
+        res.send("Something's wrong buddy");
+        return
+    }
         try{
             const amount = Number(req.body.amount);
         const client: Client = await clientdaoazure.getClientbyID(req.params.id);
@@ -111,6 +117,12 @@ app.patch('/clients/:id/accounts/:acctname/deposit', async (req, res)=>{
 
 // //PATCH /clients/7/accounts/vacationfund/withdraw => deposit given amount (Body {"amount":500} ), return 404 if no account exists, return 422 if insufficient funds
     app.patch('/clients/:id/accounts/:acctname/withdraw', async (req, res)=>{
+        if(req.body.amount < 0){
+            res.status(500);
+            res.send("Something's wrong buddy");
+            return
+        }
+
         try{
             const amount = Number(req.body.amount);
         const client: Client = await clientdaoazure.getClientbyID(req.params.id);
