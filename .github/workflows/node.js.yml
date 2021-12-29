@@ -8,8 +8,10 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+    
 env:
   COSMOS_CONNECTION: ${{secrets.COSMOS_CONNECTION}}
+
 jobs:
   build:
 

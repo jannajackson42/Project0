@@ -2,7 +2,6 @@ import Account from "../account";
 import Client from "../client";
 import ClientDAO, { ClientDao } from "../daos/client-dao";
 import {clientdaoazure} from "../daos/client-dao";
-import { ClientServicesImp, ClientServices } from "../Services/account-services";
 
 describe('DAO Specs', ()=>{
 
