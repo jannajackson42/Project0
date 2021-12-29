@@ -21,7 +21,7 @@ export default interface ClientDAO{
 
 export class ClientDao implements ClientDAO{
 
-    private client = new CosmosClient ('AccountEndpoint=https://banking-app.documents.azure.com:443/;AccountKey=fNWIKUvIKwoxY5AKiu4EYPWGVkH7M6zyIynFfJxbacCiqKjHZLCikawR6uUn1hczBhs5T1EYMu0h34A6VIJdbQ==;');
+    private client = new CosmosClient (process.env.COSMOS_CONNECTION);
     private database = this.client.database('bankingdb');
     private container = this.database.container ('Accounts');
 

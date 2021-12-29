@@ -77,18 +77,18 @@ app.delete ('/clients/:id', async (req,res)=>{
 
 // // //PUT /clients/12 => updates client with id of 12, return 404 if no such client exist
 //**TO KEEP ACCT INFO** getclient by id first, get the accounts, and then assign those accounts to the new client
-app.put('/clients/:id', async (req,res)=>{
-    const client: Client = await clientdaoazure.getClientbyID(req.params.id)
-    if (client.id === req.params.id){
-        let newclient: Client[] = req.body;
-        await clientdaoazure.updateClient(newclient);
-        res.send(newclient);
-    }
-    else{
-        res.status(404);
-        res.send("Client not found");
-        }
-    })
+// app.put('/clients/:id', async (req,res)=>{
+//     const client: Client = await clientdaoazure.getClientbyID(req.params.id)
+//     if (client.id === req.params.id){
+//         let newclient: Client[] = req.body;
+//         await clientdaoazure.updateClient(newclient);
+//         res.send(newclient);
+//     }
+//     else{
+//         res.status(404);
+//         res.send("Client not found");
+//         }
+//     })
 
 // //PATCH /clients/7/accounts/checking/deposit => deposit given amount (Body {"amount":500} ), return 404 if no account exists
 app.patch('/clients/:id/accounts/:acctname/deposit', async (req, res)=>{
